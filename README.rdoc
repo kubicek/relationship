@@ -1,0 +1,22 @@
+= Rails Relationship Generator Plugin
+
+Should help with generating relationships between models. Useful with rails templates[http://m.onkey.org/2008/12/4/rails-templates] 
+
+<b>Proof of concept</b>
+
+== Sample template
+
+	run "rm public/index.html"
+	plugin 'relationship', :git => 'git://github.com/kubicek/relationship.git'
+	generate(:scaffold, 'Article body:string title:string')
+	generate(:scaffold, 'Comment body:string')
+	generate(:relationship, 'article has_many comment')
+	rake("db:migrate")
+
+== Sample usage
+
+	mkdir blog
+	mkdir blog/vendor
+	cd blog
+	cp -R ../edge_rails/vendor/rails vendor/rails
+	ruby vendor/rails/railties/bin/rails . -m ../uml.tpl 
