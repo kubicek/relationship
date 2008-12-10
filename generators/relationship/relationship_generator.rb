@@ -20,7 +20,7 @@ module Rails
             # add migration
             migration_template 'migration.rb', 'db/migrate', :assigns => {
               :migration_name => migration_file_name.camelize,
-              :table_name => first_class,
+              :table_name => first_class.pluralize,
               :column_name => "#{second_class}_id"
             }, :migration_file_name => migration_file_name
             
