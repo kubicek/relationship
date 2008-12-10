@@ -12,16 +12,17 @@ module Rails
           
           first_class_name=first_class.camelize
           second_class_name=second_class.camelize
+          migration_file_name = "add_#{second_class}_id_to_#{first_class}"
           
           # process belongs_to relationship
           if relation=="belongs_to"
             
             # add migration
             migration_template 'migration.rb', 'db/migrate', :assigns => {
-              :migration_name => "AddRelationshipWith#{second_class_name}To#{first_class_name.pluralize}",
+              :migration_name => migration_file_name.camelize,
               :table_name => first_class,
               :column_name => "#{second_class}_id"
-            }, :migration_file_name => "add_#{second_class}_id_to_#{first_class}"
+            }, :migration_file_name => migration_file_name
             
             # add relationship to models
             # first_class belongs_to second_class
